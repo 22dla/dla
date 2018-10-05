@@ -12,7 +12,7 @@ using namespace std;
 int main( )
 {
 	ofstream out( "out.csv" );
-	Mat img = imread( "filtered.bmp" );//Read first image
+	Mat img = imread( "tumor.jpg" );//Read first image
 
 	/*Mat bgr[3];   //destination array
 	split( img, bgr );//split source  */
@@ -25,7 +25,7 @@ int main( )
 	
 	LevelSetSeg Segmentator;
 	//Image, Mask, Num of iteration, Error, (T) Intencity Value, Alpha.
-	Mat result = Segmentator.simpleseg( img, init_mask, 1000, 15, 128, 0.5 );
+	Mat result = Segmentator.simpleseg( img, init_mask, 1000, 15, 215, 0.5 );
 
 	
 	cout << "Time: " << clock( ) / 1000.0 << endl;
