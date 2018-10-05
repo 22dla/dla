@@ -12,23 +12,19 @@ using namespace std;
 int main( )
 {
 	ofstream out( "out.csv" );
-	Mat img = imread( "tumor.jpg" );//Read first image
-
-	/*Mat bgr[3];   //destination array
-	split( img, bgr );//split source  */
+	Mat img = imread( "tumor.jpg" );//Read image
 	
 	cvtColor( img, img, CV_RGB2GRAY );
 	Mat init_mask( img.size( ), CV_8UC1 );
 	init_mask.setTo( 0 );
-	init_mask( Rect( 150, 100, 40, 40 ) ).setTo( 255 );
+	init_mask( Rect( 130, 120, 40, 40 ) ).setTo( 255 );
 
 	
-	LevelSetSeg Segmentator;
-	//Image, Mask, Num of iteration, Error, (T) Intencity Value, Alpha.
-	Mat result = Segmentator.simpleseg( img, init_mask, 1000, 15, 215, 0.5 );
-
-	
+	LevelSetSeg Segmentator( 1000, 30, 200, 0.1 );
+	Mat result = Segmentator.simpleseg( img, init_mask );
+		
 	cout << "Time: " << clock( ) / 1000.0 << endl;
+
 	imwrite( "result.jpg", result );
 	out << result;
 	system( "pause" );

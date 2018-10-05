@@ -1,11 +1,19 @@
 #pragma once
 #include "opencv/cv.hpp"
+#include <stdint.h>
 
 class LevelSetSeg
 {
 public:
-	cv::Mat simpleseg( cv::Mat I, cv::Mat init_mask, size_t max_its,
-				   int E, int T, double alpha );
+	LevelSetSeg( size_t max_its, int E, int T, double alpha );
+	~LevelSetSeg( );
+
+	cv::Mat simpleseg( cv::Mat I, cv::Mat init_mask );
+
+	double mAlpha;
+	int mT;
+	int mE;
+	size_t mMax_its;
 private:
 	cv::Mat shiftR( cv::Mat M );
 	cv::Mat shiftL( cv::Mat M );
