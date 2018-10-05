@@ -24,7 +24,7 @@ int main( )
 
 	
 	LevelSetSeg Segmentator;
-	//Image, Mask, Num of iteration Error, (T) Intencity Value, Alpha.
+	//Image, Mask, Num of iteration, Error, (T) Intencity Value, Alpha.
 	Mat result = Segmentator.simpleseg( img, init_mask, 1000, 15, 128, 0.5 );
 
 	
